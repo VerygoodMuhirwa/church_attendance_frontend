@@ -3,26 +3,33 @@
 import React,{useState , useEffect} from 'react'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import { Toaster,toast } from 'react-hot-toast'
 import Navbar from '../Components/Navbar'
 const Report = () => {
 
     const token= JSON.parse(localStorage.getItem("token"))
     const [userDatas, setUserData] = useState()
-    const [loading,setLoading] = useState(true)
+    const [loading, setLoading] = useState(true)
+    const [noData, setNoDATA] = useState(false)
     const fetchData = async () => {
-        const res = await axios.get("https://attendance-pro.onrender.com/api/v1/reports/getReport", {
+        const res = await axios.get("http://localhost:3500/api/v1/reports/getReport", {
             headers: {
                 authorization: `Bearer ${token}`
             }
         })
-        if (Array.isArray(res.data)) {
-            setLoading(false)
-return
+        
+       
+        if (res.data.length === 0) {
+            toast.error("No attendance Found")
+
+            setTimeout(() => {
+                navigate("/attendance")
+
+}, 2000);
         } else {
             setUserData(res.data)
-            setLoading(false)
-      }
-       
+        }
+
 
     }
     useEffect(() => {
@@ -41,7 +48,7 @@ setTimeout(() => {
     }
     return (
         <div className="report-container">
-           {userDatas ? (
+           {userDatas && (
                 <div className='report-container'>
                     <Navbar />
                     <h3> General records</h3 >
@@ -161,17 +168,10 @@ setTimeout(() => {
                         <button onClick={handlePreviousReports}>Get previous reports</button>
                         <button onClick={handleAbarwayi}>Abarwayi</button>
                     </div>
-        </div>
-            ) : (
-                    <>
-                        <Navbar />
-                        <div className="loading-spinner-container">
-                            <div className="loading-spinner"></div>
                         </div>
-                    
-                    </>
             )}
-            
+
+            <Toaster />
 
         </div>
     )

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar'
 import axios from "axios"
+import { Button } from '@mui/material'
 import { useNavigate } from 'react-router-dom'
 
 const Homepage = () => {
@@ -75,7 +76,7 @@ setTimeout(() => {
         <div className="home-container">
           <table className='home-table'>
             <thead>
-              <tr>
+              <tr className='table-head-row'>
                 <th>No</th>
                 <th>Username</th>
                 <th>Email</th>
@@ -99,10 +100,10 @@ setTimeout(() => {
                     </td>
                     <td>{data.family}</td>
                     <td>
-                      <button style={{ textAlign: "center" }} className='value' onClick={() => handleDelete(data._id)}>Delete</button>
+                      <Button style={{ textAlign: "center" }} className='value' onClick={() => handleDelete(data._id)}>Delete</Button>
                     </td>
                     <td>
-                      <button className='value' onClick={() => { handleUpdate(data) }}>Update</button>
+                      <Button className='value' onClick={() => { handleUpdate(data) }}>Update</Button>
                     </td>
                   </tr>
                 )

@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { addAttendance, updateAttendance } from "../slices/presentSlice";
 import axios from "axios";
+import { Toaster, toast } from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import Navbar from "../Components/Navbar";
 
@@ -12,7 +13,7 @@ const Attendance = () => {
   const allUsers = useSelector((state) => state.addAttendance);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); // Add loading state
-
+  
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -89,7 +90,12 @@ const Attendance = () => {
 
         dispatch(updateAttendance(formData));
       });
-      navigate("/users");
+      toast.success("Attendance added successfully")
+
+      setTimeout(() => {
+        navigate("/users");
+      }, 2000);
+
     }
   };
 
@@ -102,15 +108,15 @@ const Attendance = () => {
       ) : (
         <div className="attendance-container">
           <Navbar />
-          <form action="">
+          <form action="" className="attendanceform">
             <table className="home-table">
               <thead>
                 <tr className="table-head-row">
                   <td>No</td>
-                  <td>Username</td>
+                  <td>Name</td>
                   <td>Yaje</td>
                   <td>Ararwaye</td>
-                  <td>Afite Impamvu</td>
+                  <td>Afite impamvu</td>
                   <td>Yarasuye</td>
                   <td>Yarasuwe</td>
                   <td>Yarafashije</td>
@@ -125,31 +131,38 @@ const Attendance = () => {
                   .sort((a, b) => a.username.localeCompare(b.username))
                   .map((user, index) => {
                     const id = index + 1;
-                    return <AttendanceRow user={user} id={id} dispatch={dispatch} />;
+                    return <AttendanceRow user={user} index= {index} id={id} dispatch={dispatch} />;
                   })}
               </tbody>
             </table>
             <div className="abashyitsi">
-              <label htmlFor="abashyitsi"> Abashyitsi: </label>
               <input
                 type="number"
                 value={abashyitsi}
                 name="abashyitsi"
                 onChange={(e) => setAbashyitsi(e.target.value)}
-              />
+                />
+                <button type="submit" className="value-1" onClick={handleSubmit}>
+                  Submit
+                </button>
             </div>
-            <button type="submit" className="value-1" onClick={handleSubmit}>
-              Submit
-            </button>
-          </form>
+           
+            </form>
+            <Toaster />
         </div>
       )}
     </>
   );
 };
 
-const AttendanceRow = ({ user,id, dispatch }) => {
-  const username= user.username;  
+const AttendanceRow = ({ user,id, dispatch , index }) => {
+  const username = user.username;  
+  const [scrollTop, setScrollTop] = useState(0);
+
+  const handleScroll = (e) => {
+    setScrollTop(e.target.scrollTop);
+  };
+
   const [attendanceData, setAttendanceData] = useState({
     id: user._id,
     username: user.username,
@@ -171,7 +184,8 @@ const AttendanceRow = ({ user,id, dispatch }) => {
   return (
     <>
       {attendanceData &&
-        <tr key={id}>
+        <tr key={id} style={{
+        }}>
           <td >{id}</td>
           <td>{username}</td>
           <td
