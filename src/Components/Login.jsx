@@ -25,7 +25,7 @@ const [showPassword,setShowPassword]  = useState(false)
 
         try {
           setIsLoading(true)
-          const res = await axios.post("https://attendance-cpsk.onrender.com/api/v1/admin/loginAdmin", formData)
+          const res = await axios.post("https://attendance-pro.onrender.com/api/v1/admin/loginAdmin", formData)
         
             if (res.data) {
               if (res.data.error) {

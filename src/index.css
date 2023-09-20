@@ -292,8 +292,16 @@ outline: none;
 height: 50px;
     font-size: 0.75em;
         background: rgb(245, 241, 241);
+  }
 
-  
+  .register-form-container form input, select{
+    border-radius: 10px;
+    text-indent: 10px;
+border: none;
+outline: none;
+height: 50px;
+    font-size: 0.75em;
+        background: rgb(245, 241, 241);
   }
 
   .form-container form input:focus{

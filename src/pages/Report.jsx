@@ -10,7 +10,7 @@ const Report = () => {
     const [userDatas, setUserData] = useState()
     const [loading,setLoading] = useState(true)
     const fetchData = async () => {
-        const res = await axios.get("https://attendance-cpsk.onrender.com/api/v1/reports/getReport", {
+        const res = await axios.get("https://attendance-pro.onrender.com/api/v1/reports/getReport", {
             headers: {
                 authorization: `Bearer ${token}`
             }

@@ -22,7 +22,7 @@ const SignUp = () => {
             password
         }
         setIsLoading(true)
-        const res = await axios.post("https://attendance-cpsk.onrender.com/api/v1/admin/registerAdmin", formData)
+        const res = await axios.post("https://attendance-pro.onrender.com/api/v1/admin/registerAdmin", formData)
         if (res.data) {
             if (res.data.error) {
                 setError(res.data.error)

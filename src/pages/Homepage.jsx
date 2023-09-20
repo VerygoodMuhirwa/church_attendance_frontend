@@ -9,7 +9,7 @@ const Homepage = () => {
   const token = JSON.parse(localStorage.getItem("token"))
   const [loading, setLoading] = useState(true)
   const fetchData = async () => {
-    const res = await axios.get("https://attendance-cpsk.onrender.com/api/v1/members/getMembers",
+    const res = await axios.get("https://attendance-pro.onrender.com/api/v1/members/getMembers",
       {
       headers: {
         authorization:`Bearer ${token}`
@@ -47,7 +47,7 @@ setTimeout(() => {
 
   const handleDelete = async (id) => {
 
-    const res = await axios.delete("https://attendance-cpsk.onrender.com/api/v1/members/deleteMember/" + id, {
+    const res = await axios.delete("https://attendance-pro.onrender.com/api/v1/members/deleteMember/" + id, {
       headers: {
         authorization: `Bearer ${token}`
       }

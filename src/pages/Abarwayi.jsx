@@ -5,7 +5,7 @@ const Abarwayi = () => {
     const [abarwayi, setAbarwayi] = useState()
     const token = JSON.parse(localStorage.getItem("token"))
     const fetchData = async () => {
-        const res = await axios.get("https://attendance-cpsk.onrender.com/api/v1/reports/getAbarwayi",
+        const res = await axios.get("https://attendance-pro.onrender.com/api/v1/reports/getAbarwayi",
             {
                 headers: {
                     authorization: `Bearer ${token}`

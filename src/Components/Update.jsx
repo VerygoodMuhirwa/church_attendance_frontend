@@ -22,7 +22,7 @@ const Update = () => {
             Class,
             family
         }
-        const res = await axios.put(`https://attendance-cpsk.onrender.com/api/v1/members/updateMember/` + id, formData, {
+        const res = await axios.put(`https://attendance-pro.onrender.com/api/v1/members/updateMember/` + id, formData, {
             headers: {
                 authorization:`Bearer ${token}`
             }

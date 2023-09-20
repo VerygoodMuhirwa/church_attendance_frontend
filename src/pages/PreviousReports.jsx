@@ -10,7 +10,7 @@ const PreviousReports = () => {
     const token= JSON.parse(localStorage.getItem("token"))
     const navigate= useNavigate()
     const fetchData = async () => {
-        const res = await axios.get("https://attendance-cpsk.onrender.com/api/v1/reports/getPreviousReports",{
+        const res = await axios.get("https://attendance-pro.onrender.com/api/v1/reports/getPreviousReports",{
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -25,7 +25,7 @@ const PreviousReports = () => {
     }, [])
 
     const handleAttendanceDelete = async (id) => {
-        const response = await axios.delete("https://attendance-cpsk.onrender.com/api/v1/attendance/deleteAttendance/" + id, {
+        const response = await axios.delete("https://attendance-pro.onrender.com/api/v1/attendance/deleteAttendance/" + id, {
             headers: {
                 authorization: `Bearer ${token}`
             }
@@ -51,7 +51,7 @@ const PreviousReports = () => {
                                   month: data.month
                               }
 
-                              const res = await axios.get("https://attendance-cpsk.onrender.com/api/v1/reports/getSingleReport/"+ data.id,  {
+                              const res = await axios.get("https://attendance-pro.onrender.com/api/v1/reports/getSingleReport/"+ data.id,  {
                                   headers: {
                                       authorization: `Bearer ${token}`
                                   }
