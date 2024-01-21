@@ -2,7 +2,7 @@ import "./app.css"
 import { Provider } from "react-redux";
 import { createdStore } from "./store/store";
 import Attendance from "./pages/Attendance";
-import MakeAttendance from "./Components/MakeAttendance";
+import AddChurchMemberForm from "./Components/AddChurchMemberForm";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Help from "./pages/Help";
@@ -23,7 +23,7 @@ function App() {
           <Route path="/register" element={ <SignUp/>} />
           <Route path="/users" element={<Homepage />} />
           <Route path="/attendance" element={<Attendance />} />
-          <Route path="/formData" element={<MakeAttendance />} />
+          <Route path="/formData" element={<AddChurchMemberForm />} />
           <Route path="/help" element={<Help />} />
           <Route path="/update" element={<Update />} />
           <Route path="/report" element={<Report />} />

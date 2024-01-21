@@ -22,12 +22,15 @@ const SignUp = () => {
             password
         }
         setIsLoading(true)
-        const res = await axios.post("https://attendance-pro.onrender.com/api/v1/admin/registerAdmin", formData)
+        const res = await axios.post("https://verygood-attendance-church.onrender.com/api/v1/admin/registerAdmin", formData)
         if (res.data) {
             if (res.data.error) {
+                setEmail("")
+                setPassword("")
                 setError(res.data.error)
                 toast.error(res.data.error )
                 setIsLoading(false)
+                
             } else {
                 setEmail("")
                 setPassword("")
@@ -38,30 +41,29 @@ const SignUp = () => {
         }
     }
     return (
-        <div className='form-container'>
-            <form>
-                <input type="email" name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter the email' />
-                <div className='input-class' style={{ display: 'flex', alignItems: 'center', height: "60px", borderRadius: "10px", paddingTop: "none", marginTop: "1em", background: "rgb(245, 241, 241)" }}>
-                    <input
+        <div >
+            <form className='pt-4 flex w-[80%] flex-col items-center justify-center ss:w-full mt-[13%] mx-auto sm:w-[30%]     '>
+                <input type="email"  className='w-[80%]  bg-gray-200  h-[60px] indent-4 rounded-lg'  name='email' value={email} onChange={(e) => setEmail(e.target.value)} placeholder='Enter the email' />
+                <div className='bg-gray-200 w-[80%] first-letter:w-[80%] flex flex-row items-center h-[60px] mt-5  mb-5  rounded-lg '>
+                    <input 
                         type={showPassword ? "text" : "password"}
                         name="password"
-
+                        className='  focus:border-none bg-gray-200  indent-4 focus:outline-none'
                         value={password}
                         onChange={(e) => setPassword(e.target.value)}
                         placeholder="Enter the password"
                         style={{ flex: 1, marginRight: '8px' }}
                     />
-                    {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(false)} style={{ marginRight: "1em" }} /> : <AiFillEye style={{ marginRight: "1em" }} onClick={() => setShowPassword(true)} />
+                    {showPassword ? <AiFillEyeInvisible onClick={() => setShowPassword(false)}  /> : <AiFillEye  onClick={() => setShowPassword(true)} />
                     }
                 </div>
                 <LoadingButton
-                    className='mui-button'
+                    className='w-[70%] h-[60px]'
                     color="secondary"
                     onClick={handleSubmit}
                     loading={isLoading}
                     loadingPosition="start"
-                    // startIcon={<SendIcon />}
-                    variant="contained"
+                    variant="contained" 
                 >
                     <span>Register </span>
                 </LoadingButton>

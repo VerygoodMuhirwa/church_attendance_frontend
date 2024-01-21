@@ -13,12 +13,12 @@ const Attendance = () => {
   const allUsers = useSelector((state) => state.addAttendance);
   const navigate = useNavigate();
   const [loading, setLoading] = useState(true); // Add loading state
-  
+
   useEffect(() => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "https://attendance-pro.onrender.com/api/v1/members/getMembers",
+          "https://verygood-attendance-church.onrender.com/api/v1/members/getMembers",
           {
             headers: {
               authorization: `Bearer ${token}`,
@@ -48,8 +48,8 @@ const Attendance = () => {
       }
     };
     setTimeout(() => {
-      fetchData()
-},1000)
+      fetchData();
+    }, 1000);
   }, []);
 
   const allAttendance = useSelector((state) => state.addAttendance);
@@ -61,7 +61,7 @@ const Attendance = () => {
       abashyitsi,
     };
     const res = await axios.post(
-      "https://attendance-pro.onrender.com/api/v1/attendance/addAttendance",
+      "https://verygood-attendance-church.onrender.com/api/v1/attendance/addAttendance",
       formdata,
       {
         headers: {
@@ -90,12 +90,11 @@ const Attendance = () => {
 
         dispatch(updateAttendance(formData));
       });
-      toast.success("Attendance added successfully")
+      toast.success("Attendance added successfully");
 
       setTimeout(() => {
         navigate("/users");
       }, 2000);
-
     }
   };
 
@@ -104,25 +103,25 @@ const Attendance = () => {
       {loading ? ( // Conditional rendering based on loading state
         <div className="loading-spinner-container">
           <div className="loading-spinner"></div>
-        </div> 
+        </div>
       ) : (
-        <div className="attendance-container">
+        <div>
           <Navbar />
-          <form action="" className="attendanceform">
-            <table className="home-table">
+          <form>
+            <table className="mt-[0.5rem] mx-auto  m-b-[0.5rem]">
               <thead>
-                <tr className="table-head-row">
-                  <td>No</td>
-                  <td>Name</td>
-                  <td>Yaje</td>
-                  <td>Ararwaye</td>
-                  <td>Afite impamvu</td>
-                  <td>Yarasuye</td>
-                  <td>Yarasuwe</td>
-                  <td>Yarafashije</td>
-                  <td>Yarafashijwe</td>
-                  <td>Yize 7</td>
-                  <td>Yatangiye Isabato</td>
+                <tr className="font-bold sticky top-0 bg-white ">
+                  <td className="border-[1px] p-4">No</td>
+                  <td className="border-[1px] p-4">Name</td>
+                  <td className="border-[1px] p-4">Yaje</td>
+                  <td className="border-[1px] p-4">Ararwaye</td>
+                  <td className="border-[1px] p-4">Afite impamvu</td>
+                  <td className="border-[1px] p-4">Yarasuye</td>
+                  <td className="border-[1px] p-4">Yarasuwe</td>
+                  <td className="border-[1px] p-4">Yarafashije</td>
+                  <td className="border-[1px] p-4">Yarafashijwe</td>
+                  <td className="border-[1px] p-4">Yize 7</td>
+                  <td className="border-[1px] p-4">Yatangiye Isabato</td>
                 </tr>
               </thead>
               <tbody>
@@ -131,7 +130,14 @@ const Attendance = () => {
                   .sort((a, b) => a.username.localeCompare(b.username))
                   .map((user, index) => {
                     const id = index + 1;
-                    return <AttendanceRow user={user} index= {index} id={id} dispatch={dispatch} />;
+                    return (
+                      <AttendanceRow
+                        user={user}
+                        index={index}
+                        id={id}
+                        dispatch={dispatch}
+                      />
+                    );
                   })}
               </tbody>
             </table>
@@ -140,23 +146,28 @@ const Attendance = () => {
                 type="number"
                 value={abashyitsi}
                 name="abashyitsi"
+                className="border-[1px] indent-5 rounded-lg mt-[1em] mr-[12%] border-black h-[50px] "
+                placeholder="Visitors"
                 onChange={(e) => setAbashyitsi(e.target.value)}
-                />
-                <button type="submit" className="value-1" onClick={handleSubmit}>
-                  Submit
-                </button>
+              />
+              <button
+                type="submit"
+                className="mt-[1em]  w-[180px] mr-[12%] text-white bg-black rounded-lg h-[50px] text-[1em] cursor-pointer "
+                onClick={handleSubmit}
+              >
+                Submit
+              </button>
             </div>
-           
-            </form>
-            <Toaster />
+          </form>
+          <Toaster />
         </div>
       )}
     </>
   );
 };
 
-const AttendanceRow = ({ user,id, dispatch , index }) => {
-  const username = user.username;  
+const AttendanceRow = ({ user, id, dispatch, index }) => {
+  const username = user.username;
   const [scrollTop, setScrollTop] = useState(0);
 
   const handleScroll = (e) => {
@@ -166,29 +177,25 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
   const [attendanceData, setAttendanceData] = useState({
     id: user._id,
     username: user.username,
-    yaje: user.yaje, 
+    yaje: user.yaje,
     yarasuwe: user.yarasuwe,
     yarasuye: user.yarasuye,
     yarafashije: user.yarafashije,
-    yarafashijwe:user.yarafashijwe,
+    yarafashijwe: user.yarafashijwe,
     ararwaye: user.ararwaye,
     yatangiyeIsabato: user.yatangiyeIsabato,
     afiteIndiMpamvu: user.afiteIndiMpamvu,
-    yize7:user.yize7
-  })
+    yize7: user.yize7,
+  });
 
-
- 
-
-  
   return (
     <>
-      {attendanceData &&
-        <tr key={id} style={{
-        }}>
-          <td >{id}</td>
-          <td>{username}</td>
+      {attendanceData && (
+        <tr key={id} style={{}}>
+          <td className="border-[1px] p-4">{id}</td>
+          <td className="border-[1px] p-4">{username}</td>
           <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -206,10 +213,10 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
               name="yaje"
               checked={attendanceData.yaje}
               value={attendanceData.yaje}
-              className={attendanceData.yaje ? "checked-checkbox" : ""}
             />
           </td>
           <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -229,34 +236,34 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
               type="checkbox"
               name="ararwaye"
               checked={attendanceData.ararwaye}
-              className={attendanceData.ararwaye ? "checked-checkbox" : ""}
             />
           </td>
-          <td onClick={() => {
-            setAttendanceData((prevData) => ({
-              ...prevData,
-              afiteIndiMpamvu: !prevData.afiteIndiMpamvu,
-            }));
-            const handleUserData1 = (prevData) => {
-              const updatedValue = {
+          <td
+            className="border-[1px] p-4"
+            onClick={() => {
+              setAttendanceData((prevData) => ({
                 ...prevData,
                 afiteIndiMpamvu: !prevData.afiteIndiMpamvu,
+              }));
+              const handleUserData1 = (prevData) => {
+                const updatedValue = {
+                  ...prevData,
+                  afiteIndiMpamvu: !prevData.afiteIndiMpamvu,
+                };
+                dispatch(updateAttendance(updatedValue));
               };
-              dispatch(updateAttendance(updatedValue));
-            };
-            handleUserData1(attendanceData);
-          }}>
+              handleUserData1(attendanceData);
+            }}
+          >
             <input
               type="checkbox"
               name="afiteIndiMpamvu"
               checked={attendanceData.afiteIndiMpamvu}
-              className={
-                attendanceData.afiteIndiMpamvu ? "checked-checkbox" : ""
-              }
             />
           </td>
 
           <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -275,11 +282,11 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
             <input
               checked={attendanceData.yarasuye}
               type="checkbox"
-              className={attendanceData.yarasuye ? "checked-checkbox" : ""}
               name="yarasuye"
             />
           </td>
           <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -299,11 +306,11 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
               checked={attendanceData.yarasuwe}
               type="checkbox"
               name="yarasuwe"
-              className={attendanceData.yarasuwe ? "checked-checkbox" : ""}
             />
           </td>
 
           <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -322,11 +329,11 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
             <input
               type="checkbox"
               name="yarafashije"
-              className={attendanceData.ararwaye ? "checked-checkbox" : ""}
               checked={attendanceData.yarafashije}
             />
           </td>
           <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -346,36 +353,35 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
               type="checkbox"
               name="yarafashijwe"
               checked={attendanceData.yarafashijwe}
-              className={attendanceData.yarafashijwe ? "checked-checkbox" : ""}
-            />
-          </td>
-
-
-          <td onClick={() => {
-            setAttendanceData((prevData) => ({
-              ...prevData,
-              yize7: !prevData.yize7,
-            }));
-            const handleUserData1 = (prevData) => {
-              const updatedValue = {
-                ...prevData,
-                yize7: !prevData.yize7,
-              };
-              dispatch(updateAttendance(updatedValue));
-            };
-            handleUserData1(attendanceData);
-          }}>
-            <input
-              type="checkbox"
-              name="afiteIndiMpamvu"
-              checked={attendanceData.yize7}
-              className={
-                attendanceData.yize7 ? "checked-checkbox" : ""
-              }
             />
           </td>
 
           <td
+            className="border-[1px] p-4"
+            onClick={() => {
+              setAttendanceData((prevData) => ({
+                ...prevData,
+                yize7: !prevData.yize7,
+              }));
+              const handleUserData1 = (prevData) => {
+                const updatedValue = {
+                  ...prevData,
+                  yize7: !prevData.yize7,
+                };
+                dispatch(updateAttendance(updatedValue));
+              };
+              handleUserData1(attendanceData);
+            }}
+          >
+            <input
+              type="checkbox"
+              name="afiteIndiMpamvu"
+              checked={attendanceData.yize7}
+            />
+          </td>
+
+          <td
+            className="border-[1px] p-4"
             onClick={() => {
               setAttendanceData((prevData) => ({
                 ...prevData,
@@ -395,20 +401,12 @@ const AttendanceRow = ({ user,id, dispatch , index }) => {
               type="checkbox"
               name="yatangiyeIsabato"
               checked={attendanceData.yatangiyeIsabato}
-              className={
-                attendanceData.yatangiyeIsabato ? "checked-checkbox" : ""
-              }
             />
           </td>
         </tr>
-}
+      )}
     </>
-    );
-    
-}
+  );
+};
 
-
-export default Attendance
-
-
-
+export default Attendance;

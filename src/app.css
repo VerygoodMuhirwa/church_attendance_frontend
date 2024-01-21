@@ -1,43 +1,45 @@
-nav{
-    padding: 1em ;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+nav {
+  padding: 1em;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-
-nav a{
-    color: white;
-    text-decoration: none;
-    font-size: 1rem;
+nav a {
+  color: white;
+  text-decoration: none;
+  font-size: 1rem;
 }
 
-
-.register-form input{
-    height: 40px;
+.register-form input {
+  height: 40px;
 }
 
 .register-form select {
-    height: 40px;
+  height: 40px;
 }
 
 .register-form button {
-    height: 40px;
+  height: 40px;
 }
 
-form input{
-    height: 40px;
+form input {
+  height: 40px;
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Apply the animation to an element */
 .loading-spinner {
-    margin: 0 auto ;
-  border: 4px solid rgba(0, 0, 0, 0.3);
+  margin: 0 auto;
+  border: 2px solid blue;
   border-top: 4px solid #007bff; /* Blue color */
   border-radius: 50%;
   width: 40px;
@@ -45,6 +47,6 @@ form input{
   animation: spin 1s linear infinite; /* Use the "spin" animation */
 }
 
-.loading-spinner-container{
-    padding-top: 20vh;
+.loading-spinner-container {
+  padding-top: 20vh;
 }

@@ -5,7 +5,7 @@ const Abarwayi = () => {
     const [abarwayi, setAbarwayi] = useState()
     const token = JSON.parse(localStorage.getItem("token"))
     const fetchData = async () => {
-        const res = await axios.get("https://attendance-pro.onrender.com/api/v1/reports/getAbarwayi",
+        const res = await axios.get("https://verygood-attendance-church.onrender.com/api/v1/reports/getAbarwayi",
             {
                 headers: {
                     authorization: `Bearer ${token}`
@@ -25,17 +25,20 @@ const Abarwayi = () => {
   return (
       <>
           <Navbar />
-          <div className="abarwayi-title"><span>Abarwaye n'abafite impamvu </span></div>
-          {abarwayi && abarwayi.map((data, index) => {
+          <div  className='md:pl-[40%] ss:pl-[20%]  pt-[1%]'>
+            <span className='font-bold underline '>Abarwaye n'abafite impamvu </span></div>
+         <div  className='pl-[40%]'>
+         {abarwayi && abarwayi.map((data, index) => {
               return (
-                  <div className='abarwayi'>
-                      <span> { index+1}. { data}</span>
+                  <div className=" flex pt-[2%] flex-col  mx-auto justify-center">
+                      <p className='mb-[1em]'> { index+1}. { data}</p>
                   </div>    
               )
           }) 
           }
+         </div>
 
-          {!abarwayi && <div className='abarwayi'>No Umurwayi found 😂😂😂🤣</div>}
+          {!abarwayi && <div className='mx-auto'>No Umurwayi found 😂😂😂🤣</div>}
           
           
       </>

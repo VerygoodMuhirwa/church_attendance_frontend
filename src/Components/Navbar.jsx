@@ -9,11 +9,11 @@ const Navbar = () => {
 
   return (
     <div className='navbar-container'>
-      <Link to="/users">Home</Link>
-          <Link to="/attendance">Attendance</Link>
-      <Link to="/report">Report</Link>
-      <Link to="/help">Help</Link>
-<a href="" onClick={handleLogout}> Logout</a>
+      <Link to="/users">home</Link>
+          <Link to="/attendance">attendancies</Link>
+      <Link to="/report">reports</Link>
+      <Link to="/help">help</Link>
+<a href="" onClick={handleLogout}> logout</a>
     </div>
   )
 }
